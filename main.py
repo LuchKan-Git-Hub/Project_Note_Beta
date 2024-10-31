@@ -1,18 +1,33 @@
-# import time
+# import things
+import json as js
 import time
 # the note
 notes = dict()
+# function with json
+def save_notes():
+    global notes
+    with open("notes.json", "w") as file:
+        js.dump(notes, file)
+    print("notes saved!")
 
+def update_notes():
+    global notes
+    with open("notes.json", "r") as file:
+        notes = js.load(file)
 
 # function add new note
 def add_note(description, key):
     global notes
     notes[description] = key
     print(f"note added {description}: {key}!")
+    save_notes()
+
 
 
 # function show all notes
 def show_notes():
+    global notes
+    update_notes()
     if len(notes) == 0:
         print("there is no notes yet.")
         time.sleep(1)
@@ -23,14 +38,19 @@ def show_notes():
 
 
 # function delete notes
-def delete_note(title):
+def delete_note(del_it):
     global notes
-    if title in notes:
-        del notes[title]
+    update_notes()
+    if del_it in notes:
+        del notes[del_it]
         print("note deleted!")
+    elif len(notes) == 0:
+        print("there is no notes yet.")
+        time.sleep(0.2)
     else:
         print("note not found!")
-
+        time.sleep(0.2)
+    save_notes()
 
 # main function
 def main():
@@ -43,30 +63,29 @@ def main():
         time.sleep(0.5)
         print("3. delete note")
         time.sleep(0.75)
-        print("4. quit (deletes all notes data!)")
+        print("4. quit (update saves all notes and data!)")
         choice = input("Choose an option: ")
 
         # if chose add note
-        if choice == "1":
+        if choice == '1':
             note_title = input("Name of the note: ")
             note_text = input("Name of the keyword: ")
             add_note(note_title, note_text)
             time.sleep(1)
 
         # if chose show notes
-        elif choice == "2":
+        elif choice == '2':
             show_notes()
 
         # if chose delete note
-        elif choice == "3":
-            input_title = input("Name of the note: ")
-            delete_note(input_title)
+        elif choice == '3':
+            input_del_note = input("Name of the note: ")
+            delete_note(input_del_note)
             time.sleep(1)
 
         # if chose to quit exit
-        elif choice == "4":
+        elif choice == '4':
             break
-
         # if invalid choice
         else:
             print("try again no option like that.")
