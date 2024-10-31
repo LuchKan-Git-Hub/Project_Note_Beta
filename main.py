@@ -21,6 +21,7 @@ def add_note(description, key):
     notes[description] = key
     print(f"note added {description}: {key}!")
     save_notes()
+    print('-----------------------------')
 
 
 
@@ -34,7 +35,8 @@ def show_notes():
     else:
         for number_loop, (title, text) in enumerate(notes.items(), start=1):  # `enumerate` with a starting index of 1
             print(f"{number_loop}. {title}: {text}")
-            time.sleep(3)
+            time.sleep(0.5)
+    print('-----------------------------')
 
 
 # function delete notes
@@ -51,6 +53,7 @@ def delete_note(del_it):
         print("note not found!")
         time.sleep(0.2)
     save_notes()
+    print('-----------------------------')
 
 # main function
 def main():
