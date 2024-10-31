@@ -1,2 +1,2 @@
 # Project_Note_Beta
-A Note
+You can use freely as you want
