@@ -19,7 +19,7 @@ def update_notes():
 def add_note(description, key):
     global notes
     notes[description] = key
-    print(f"note added {description}: {key}!")
+    print(f"note added \"{description}: {key}\"")
     save_notes()
     print('-----------------------------')
 
@@ -45,7 +45,7 @@ def delete_note(del_it):
     update_notes()
     if del_it in notes:
         del notes[del_it]
-        print("note deleted!")
+        print(f"note named \"{del_it}\" deleted successfully!")
     elif len(notes) == 0:
         print("there is no notes yet.")
         time.sleep(0.2)
@@ -96,5 +96,6 @@ def main():
 
 
 # starting the main function
-main()
+if __name__ == "__main__":
+    main()
 exit(319)
