@@ -2,7 +2,7 @@
 import json as js
 import time
 # the note
-notes = dict()
+notes = {}
 # function with json
 def save_notes():
     global notes
